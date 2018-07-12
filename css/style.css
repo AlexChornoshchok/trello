@@ -1,0 +1,40 @@
+body {
+    background: blue;
+}
+
+@font-face{
+    font-family: "BGizzle";
+    src:url(/fonts/BGizzle.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+.content{
+    display: flex;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    background: yellow
+}
+
+.group .header {
+    margin: 5px 10px;
+
+}
+
+.group .card {
+    margin: 10px;
+    width: 200px;
+    height: 100px;
+    background: white;
+}
+
+
+
+.group .footer {
+    margin: 5px 10px;
+    opacity: 0.5;
+}
