@@ -1,17 +1,17 @@
-;(function(){
-    var listCards = [
-        '<div class="header"> Header</div>',
-        '<div class="footer"> Footer</div>'
+(function () {
+  let listCardsHTML = [
+    '<div class="header"> Header</div>',
+    '<div class="footer"> Footer</div>'
+  ];
+  const defaultCard = '<div class="card">Card</div>';
+  defaultCard.className = 'card';
+  const group = document.getElementsByClassName('group')[0];
+  group.innerHTML = listCardsHTML;
+  // const listCards = document.getElementsByClassName('card');
 
-    ];
-    var defaultCard = '<div class="card">Card</div>';
-    defaultCard.className = 'card';
-    var group = document.getElementsByClassName("group")[0];
-    
-    //group.innerHTML = listCards;
-    
-    window.addCard  = function() {
-        listCards.splice(listCards.length-1, 0, defaultCard);
-        group.innerHTML = defaultCard;
-    }
-})();
+  window.addCard = function () {
+    listCardsHTML.splice(listCardsHTML.length - 1, 0, defaultCard);
+    group.innerHTML = listCardsHTML;
+    // listCards.insertBefore(defaultCard, listCards.lastChild);
+  };
+}());
