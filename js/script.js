@@ -1,16 +1,17 @@
 ;(function(){
-    var cards = [
+    var listCards = [
         '<div class="header"> Header</div>',
         '<div class="footer"> Footer</div>'
 
     ];
-    var defauiltCard = '<div class="card">Card</div>';
+    var defaultCard = '<div class="card">Card</div>';
+    defaultCard.className = 'card';
     var group = document.getElementsByClassName("group")[0];
     
-    group.innerHTML = cards;
+    //group.innerHTML = listCards;
     
     window.addCard  = function() {
-        cards.splice(cards.length-1, 0, defauiltCard);
-        group.innerHTML = cards;
+        listCards.splice(listCards.length-1, 0, defaultCard);
+        group.innerHTML = defaultCard;
     }
 })();
