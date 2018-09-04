@@ -1,34 +1,36 @@
 (function () {
 
-  // var  listCardsHTML = `
-  //   <div class="header"> <h4> Tital </h4> </div>
-  //   <div class="footer" onclick = "addCard()"> Add card</div>
-  //   `;
-
-  var  listCardsHTML = function(groupName) {
+  const  LIST_CARD_HTML = function() {
     return `
-      <div class="header"> <h4> Tital </h4> </div>
-      <div class="footer" onclick = "addCard('${groupName}')"> Add card</div>
+      <div class="header"> <h4> Title </h4> </div>
+      <div class="footer" onclick = "addCard(this)"> Add card</div>
     `;
   }
     
-  // var defaultCard = '<div class = "card">Card</div>';
-  var defaultCard = document.createElement('div');
-  defaultCard.className = "card";
-  defaultCard.draggable = true;
-  defaultCard.ondragstart = function(event){
+  window.onDragStart = function(event){
     console.log(event);
+  };
 
-  }
-  // defaultCard.innerText = "Card"; 
-  defaultCard.innerHTML = `
-    <div class="card">
+  window.cardDrop = function(event) {
+    console.log(event);
+  };
+
+  window.onDragOver = function(event) {
+    event.preventDefault();
+  };
+
+  const DEFAULT_CARD = document.createElement('div');
+  DEFAULT_CARD.className = "card";
+  DEFAULT_CARD.draggable = true;
+  DEFAULT_CARD.ondragstart = onDragStart;
+  //DEFAULT_CARD.addEventListener("DragStart", onDragStart());
+  DEFAULT_CARD.innerHTML = `
         <div class="card-header">
            <progress max="100" value="10">Progress bar</progress>
-           <span>X</span>
+           <span  onclick = "removeCard(this)">X</span>
         </div>
         <div class = "card-title">
-          <h4>Tital</h4>
+          <h4>Title</h4>
         </div>
         <div class = "card-footer">
           <button class = "card-edit">
@@ -39,38 +41,42 @@
             <div class = "card-date"> Date </div>       
               <img class = "card-img" src="" alt="avatar">
             </div>    
-          </div>
-    </div>      
+          </div>     
     `;
- 
-  // var group = document.getElementsByClassName('group')[0];
-  // group.innerHTML = listCardsHTML;
-  var group1 = document.getElementsByClassName('group-1')[0];
-  group1.innerHTML = listCardsHTML('group-1');
-  var group2 = document.getElementsByClassName('group-2')[0];
-  group2.innerHTML = listCardsHTML('group-2');
-  //var listCards = document.getElementsByClassName('card');
-
-  window.addCard = function (type) {
-    console.log(type);
-    let group = document.getElementsByClassName(type)[0];
-    console.log(group.outerHTML);
-    let listCards = group.outerHTML;
-    console.log(listCards instanceof Array);
-   // console.log(listCards);
-    listCards.splice(listCards.length - 1, 0, defaultCard);
-    group.innerHTML = listCards;
-  //  listCardsHTML.splice(listCardsHTML.length - 1, 0, defaultCard);
-  //group.innerHTML = listCardsHTML;
-  };
-
-  window.cardDrop = function(event) {
-    console.log(event);
+  const DEFAULT_GROUP = document.createElement('div');
+  DEFAULT_GROUP.className = "group";
+  DEFAULT_GROUP.innerHTML = LIST_CARD_HTML();
+  DEFAULT_GROUP.ondragover = onDragOver;
+  //DEFAULT_GROUP.ondrop = cardDrop;
+  //DEFAULT_CARD.addEventListener("ondrop", cardDrop()); 
+  //DEFAULT_GROUP.ondrop = function(event){console.log(event);};
   
+
+  window.addNewGroup = function() {
+    let Content = document.getElementsByClassName('content')[0];
+    let group = DEFAULT_GROUP.cloneNode(true);
+    group.insertBefore(DEFAULT_CARD.cloneNode(true), group.lastElementChild);
+    Content.appendChild(group);
   };
 
-  window.onDragOver = function(event) {
-    event.preventDefault();
-
+  window.addCard = function(type) {  
+    let group = type.parentNode;
+    let card = DEFAULT_CARD.cloneNode(true);
+    card.ondragstart = onDragStart;
+    group.insertBefore(card, group.lastElementChild);
   };
+
+  window.removeCard = function(elementForRemoval){
+    console.log(elementForRemoval);
+    while(elementForRemoval.className != "card") {
+      elementForRemoval = elementForRemoval.parentNode;
+    };
+    console.log(elementForRemoval);
+    elementForRemoval.parentNode.removeChild(elementForRemoval);
+  };
+
+  
+  
+
+
 }());

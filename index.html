@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ondrop = "cardDrop()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/style.css" type = "text/css">
     
-    <title>Document</title>
-    <style>
-        .class1 {
-            background-color: aqua;
-        }
-    </style>
+    <title>Trella</title>
 </head>
 <body>
     <div class="content">
-        <div class = "group-1" ondrop = "cardDrop(event)" ondragover = "ondraDover(event)">
-            <!-- <div class="header"> <h3>Titel</h3> </div>
+        <div class = "newGroup" onclick = "addNewGroup()">new Group</div>
+        <!-- <div class = "group" ondrop = "cardDrop(event)" ondragover = "onDragOver(event)">
+            <div class="header"> <h3>Title</h3> </div>
             <div class="card">
                 <div class="card-header">
                     <progress max="100" value="10">Progress bar</progress>
                     <span>X</span>
                 </div> 
                 <div class = "card-title">
-                    <h4>Titel</h4>
+                    <h4>Title</h4>
                 </div> 
                 <div class = "card-footer">
                     <button class = "card-edit">
@@ -39,15 +35,7 @@
             </div>
             <div class="footer" onclick = "addCard()"> Add card</div> -->
         </div>
-        <div class = "group-2" ondrop = "cardDrop(event)" ondragover = "onDragOver(event)">
-        </div>
     </div>
-    <!-- <script>
-        function setClassOnBody() {
-            var body = document.getElementsByTagName('body')[0];
-           // body.className = body.className ? '':'class1';           
-        }
-    </script> -->
     <script src = "./js/script.js"></script>      
 </body>
 </html> 
