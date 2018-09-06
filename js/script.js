@@ -1,11 +1,37 @@
 ;(function () {
+//"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:/ChromeDevSession"
+  function getFile(cb){
+    let xhr = new XMLHttpRequest();
 
-  var LIST_CARD_HTML = function() {
-    return `
-      <div class="header"> <h4> Title ${id++} </h4> </div>
-      <div class="footer" onclick = "addCard(this)"> Add card</div>
-    `;
+    xhr.open('GET','data.json',true);
+    xhr.send();
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState != 4){
+        return;
+      }      
+      if(xhr.status === 0){
+        cb(false, JSON.parse(xhr.response));
+      } else {
+        cb(true, JSON.parse(xhr.response));
+      };
+    };
   };
+
+  function init() {
+    getFile( function(error, response){
+      if(error){
+        return;
+      };
+      console.log(response);
+      for(let i=0; i < response.length; i++){
+        addNewGroup(response[i]);
+        //addCard(); 
+      };  
+    });
+  };
+
+
   
   var id = 0;
   var dragCard;
@@ -81,21 +107,25 @@
       return defaultCard;
   };
 
-  function getDefaultGroup () {
+  function getDefaultGroup (data) {
+    console.log(data);
     let defaultGroup = document.createElement('div');
     defaultGroup.className = "group";
     // defaultGroup.draggable = true;
-    defaultGroup.innerHTML = LIST_CARD_HTML();
+    defaultGroup.innerHTML = `
+    <div class="header"> <h4>`+ data.title + `</h4> </div>
+    <div class="footer" onclick = "addCard(this)"> Add card</div>
+    `;
     defaultGroup.ondragstart = onDragStartGroup;
     defaultGroup.ondragover = onDragOver;
     defaultGroup.ondrop = groupDrop;
     return defaultGroup;
   };
   
-  window.addNewGroup = function() {
+  window.addNewGroup = function(data) {    
     let Content = document.getElementsByClassName('content')[0];
-    let group = getDefaultGroup(); 
-    group.insertBefore(getDefaultCard(), group.lastElementChild);
+    let group = getDefaultGroup(data); 
+   // group.insertBefore(getDefaultCard(), group.lastElementChild);
     Content.appendChild(group);
   };
 
@@ -128,5 +158,7 @@
     dropGroup.insertBefore(dragCard, dropCard);
     removeGroup(oldGroup);
   };
+
+  init();
 
 }());
