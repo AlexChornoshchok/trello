@@ -6,36 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/style.css" type = "text/css">
     
-    <title>Trella</title>
+    <title>Trello</title>
 </head>
 <body>
-    <div class="content">
-        <div class = "newGroup" onclick = "addNewGroup()">new Group</div>
-        <!-- <div class = "group" ondrop = "cardDrop(event)" ondragover = "onDragOver(event)">
-            <div class="header"> <h3>Title</h3> </div>
-            <div class="card">
-                <div class="card-header">
-                    <progress max="100" value="10">Progress bar</progress>
-                    <span>X</span>
-                </div> 
-                <div class = "card-title">
-                    <h4>Title</h4>
-                </div> 
-                <div class = "card-footer">
-                    <button class = "card-edit">
-                        ...
-                    </button> 
-                    <div class = "card-status">
-                        
-                    </div> 
-                    <div class = "card-date"> Date </div>
+    <div class="page">
+        <div class="header"> Trello
+            <form action="">
+                <input type="text" >
+                <input type="button" value="GO">
+            </form>
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class = "newGroup " onclick = "addNewGroup()">
+                    <button> Add another group</button>
+                    <form action="">
+                        <input class = "newGroup-description" type="text" placeholder="enter the name of the group">
+                        <button class = "btn" onclick = "addNewGroup()" >Add group</button>
+                        <button class = "btn">cancel</button>     
+                    </form>
+                </div>
+                <div class = "group" ondrop = "cardDrop(event)" ondragover = "onDragOver(event)">
+                    <div class="group-header"> <h3>Title HTML</h3>
+                    </div>
                     
-                    <img class = "card-img" src="" alt="avatar">
-                </div>    
+                    <div class="card-list">
+
+                        <div class="card" draggable = true>
+                            <div class="card-header">
+                                <progress max="100" value="10">Progress bar</progress>
+                                <span onclick = "removeCard(this)">X</span>
+                            </div> 
+                            <div class = "card-title">
+                                <h4>Title HTML</h4>
+                            </div> 
+                            <div class = "card-footer">
+                                <button class = "card-edit">
+                                    ...
+                                </button> 
+                                <div class = "card-status">
+                                    
+                                </div> 
+                                <div class = "card-date"> Date </div>
+                                
+                                <img class = "card-img" src="./img/avatar_default.jpg" alt="avatar">
+                            </div>    
+                        </div>
+
+                    </div>
+
+                    <div class="group-footer" onclick = "addCard(this)">
+                         Add card
+                    </div>
+
+                </div>
             </div>
-            <div class="footer" onclick = "addCard()"> Add card</div> -->
         </div>
     </div>
+    <!-- <div class="card-popup-holder">
+        <div class="card-popup">
+            <form action="">
+                <div class="haeder-popup">
+                    <input type="text">
+                    <button>X</button>
+                </div> 
+                <div class="progress-popup">
+                    <progress max = "100" value="50"></progress>
+                </div>
+                <div class="additionl-options">
+
+                </div>
+            </form>
+        </div>
+    </div> -->
     <script src = "./js/script.js"></script>
     <script>
         function submit(event) {

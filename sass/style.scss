@@ -1,33 +1,58 @@
-body {
-    background: aqua;
-}
-
 @font-face{
-    font-family: "BGizzle";
+    
     src: local(BGizzle) url(./fonts/BGizzle.ttf) format('truetype');
+    font-family: "BGizzle";
     font-style: normal;
     font-weight: normal;
 }
 
-.content{
-    font-family: BGizzle;
-    display: flex;
+$border-radius-5: 5px; 
+
+
+body {
+    background: aqua;
+    
 }
 
-.group,
-.group-1,
-.group-2 {
+
+.page {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;  
+}
+
+.container{
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 100px);    
+}
+
+.content{    
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.group {
     display: flex;
     flex-direction: column;
     margin: 10px;
     background: yellow; 
+    border-radius: $border-radius-5;
+    max-height: 100%;
 }
 
-.header {
+.header,
+.group-header {
+    height: 40px;
     margin: 5px 10px;
+    background: yellow;
+    border-radius: $border-radius-5;
 }     
 
-.footer {
+.footer,
+.group-footer {
     margin: 5px 10px;
     opacity: 0.5;
 }
@@ -35,7 +60,9 @@ body {
     margin: 10px;
     width: 300px;
     height: 150px;
-    background: white;
+    background: yellowgreen;
+    border-radius: $border-radius-5;
+    overflow: auto;
 }
 
 .card-header {
@@ -57,3 +84,24 @@ body {
     background: black;
    
 }
+
+.newGroup{
+    order: 99;
+    // display: none;
+    
+}
+
+.newGroup-button{
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;  
+    width: 100%;
+    font-size: 18px;
+}
+
+.btn {
+
+}
+
+

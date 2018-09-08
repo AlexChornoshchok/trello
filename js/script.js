@@ -1,35 +1,36 @@
 ;(function () {
+  
 //"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:/ChromeDevSession"
-  function getFile(cb){
-    let xhr = new XMLHttpRequest();
+  // function getFile(cb){
+  //   let xhr = new XMLHttpRequest();
 
-    xhr.open('GET','data.json',true);
-    xhr.send();
+  //   xhr.open('GET','data.json',true);
+  //   xhr.send();
 
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState != 4){
-        return;
-      }      
-      if(xhr.status === 0){
-        cb(false, JSON.parse(xhr.response));
-      } else {
-        cb(true, JSON.parse(xhr.response));
-      };
-    };
-  };
+  //   xhr.onreadystatechange = function(){
+  //     if(xhr.readyState != 4){
+  //       return;
+  //     }      
+  //     if(xhr.status === 0){
+  //       cb(false, JSON.parse(xhr.response));
+  //     } else {
+  //       cb(true, JSON.parse(xhr.response));
+  //     };
+  //   };
+  // };
 
-  function init() {
-    getFile( function(error, response){
-      if(error){
-        return;
-      };
-      console.log(response);
-      for(let i=0; i < response.length; i++){
-        addNewGroup(response[i]);
-        //addCard(); 
-      };  
-    });
-  };
+  // function init() {
+  //   getFile( function(error, response){
+  //     if(error){
+  //       return;
+  //     };
+  //     console.log(response);
+  //     for(let i=0; i < response.length; i++){
+  //       addNewGroup(response[i]);
+  //       //addCard(); 
+  //     };  
+  //   });
+  // };
 
 
   
@@ -87,7 +88,7 @@
     defaultCard.ondragover = onDragOver;
     defaultCard.innerHTML = `
           <div class="card-header">
-             <progress max="100" value="10">Progress bar</progress>
+             <progress max="100" value="${10 + id++}">Progress bar</progress>
              <span  onclick = "removeCard(this)">X</span>
           </div>
           <div class = "card-title">
@@ -100,21 +101,22 @@
             <div class = "card-status">  
             </div> 
               <div class = "card-date"> Date </div>       
-                <img class = "card-img" src="" alt="avatar">
+                <img class = "card-img" src="./img/avatar_default.jpg" alt="avatar">
               </div>    
             </div>     
       `;
       return defaultCard;
   };
 
-  function getDefaultGroup (data) {
-    console.log(data);
+  function getDefaultGroup () {
+  
     let defaultGroup = document.createElement('div');
     defaultGroup.className = "group";
     // defaultGroup.draggable = true;
     defaultGroup.innerHTML = `
-    <div class="header"> <h4>`+ data.title + `</h4> </div>
-    <div class="footer" onclick = "addCard(this)"> Add card</div>
+    <div class="group-header"> <h4> Title ${id++} </h4> </div>
+    <div class="card-list"></div>
+    <div class="group-footer" onclick = "addCard(this)"> Add card</div>
     `;
     defaultGroup.ondragstart = onDragStartGroup;
     defaultGroup.ondragover = onDragOver;
@@ -122,16 +124,17 @@
     return defaultGroup;
   };
   
-  window.addNewGroup = function(data) {    
-    let Content = document.getElementsByClassName('content')[0];
-    let group = getDefaultGroup(data); 
-   // group.insertBefore(getDefaultCard(), group.lastElementChild);
+  window.addNewGroup = function() {    
+    var Content = document.getElementsByClassName('content')[0];
+    var group = getDefaultGroup(); 
+    group.insertBefore(getDefaultCard(), group.lastElementChild);
     Content.appendChild(group);
+    console.log("addNewGroup");
   };
 
   window.addCard = function(type) {  
     let group = type.parentNode;
-    group.insertBefore(getDefaultCard(), group.lastElementChild);
+   group.insertBefore(getDefaultCard(), group.lastElementChild);
   };
 
   window.removeCard = function(elementForRemoval){    
@@ -159,6 +162,6 @@
     removeGroup(oldGroup);
   };
 
-  init();
+//  init();
 
 }());
