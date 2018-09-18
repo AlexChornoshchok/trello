@@ -94,8 +94,8 @@
           <div class = "card-title">
             <h4>Title ${id++}</h4>
           </div>
-          <div class = "card-footer">
-            <button class = "card-edit">
+          <div class = "card-main">
+            <button class = "card-edit" onclick = "openModal()">
               ...
             </button> 
             <div class = "card-status">  
@@ -145,7 +145,7 @@
   };
 
   window.removeGroup = function(elementForRemoval){
-    if (elementForRemoval.childElementCount ==3){
+    if (!elementForRemoval.children[1].childElementCount){
       elementForRemoval.parentNode.removeChild(elementForRemoval);
     };
   };
@@ -160,7 +160,40 @@
     removeGroup(oldGroup);
   };
 
-  // addNewGroup();
+  window.openModal = function(){
+    var options = {
+      template: `
+      <div class="card-popup">
+        <div class="card-header">
+          <progress max="100" value="10">Progress bar</progress>
+          <span onclick = "closeModal()">X</span>
+        </div> 
+        <div class = "card-title">
+          <h4>Title HTML</h4>
+        </div> 
+        <div class = "card-main">
+          <button class = "card-edit" onclick = "openModal()">...</button> 
+          <div class = "card-status"> </div> 
+          <div class = "card-date"> Date </div>   
+          <img class = "card-img" src="./img/avatar_default.jpg" alt="avatar">
+        </div>  
+      </div>  
+    `
+    };
+    var modal = new ModalService(options);
+    modal.open();
+  };
+  
+  window.closeModal = function(){
+    var options = {
+      template: ``
+    };
+
+    var modal = new ModalService(options);
+    modal.close();
+  }
+
+addNewGroup();
 //  init();
 
 }());

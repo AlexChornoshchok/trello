@@ -2,13 +2,24 @@
     
 // }
 
-$border-radius-5: 5px; 
+// @keyframes card-popup {
+//     0%();
+//     100%();
+// };
 
+$group-color: #9d784c;
+$card-color: #fcfddd;
+$border-color: #1b1014;
+$default-br: 2px solid $border-color;
+$default-opacity: 0.75;
+
+
+$br-radius-5: 5px; 
 
 body {
     // background: aqua;
     background-image: url(../img/backgruond_trello.jpg);
-    
+    background-size: contain;  
 }
 
 
@@ -16,7 +27,8 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 10px;  
+    padding: 10px; 
+   
 }
 
 .container{
@@ -35,17 +47,25 @@ body {
     display: flex;
     flex-direction: column;
     margin: 10px;
-    background: yellow; 
-    border-radius: $border-radius-5;
+    background: $group-color; 
+    border-radius: $br-radius-5;
     max-height: 100%;
+    border: $default-br;
+    opacity: $default-opacity;
+}
+
+.header{
+    border: $default-br;
+    opacity: $default-opacity;
 }
 
 .header,
 .group-header {
     height: 40px;
     margin: 5px 10px;
-    background: yellow;
-    border-radius: $border-radius-5;
+    background: $group-color;
+    border-radius: $br-radius-5;
+  
 }     
 
 .footer,
@@ -53,12 +73,13 @@ body {
     margin: 5px 10px;
     opacity: 0.5;
 }
+
 .card {
     margin: 10px;
     width: 300px;
     height: 150px;
-    background: yellowgreen;
-    border-radius: $border-radius-5;
+    background: $card-color;
+    border-radius: $br-radius-5;
     overflow: auto;
 }
 
@@ -67,7 +88,7 @@ body {
     justify-content: space-between;
 }
 
-.card-footer {
+.card-main {
     display: flex;
     justify-content: space-around;
     bottom: 0;
@@ -97,8 +118,29 @@ body {
     font-size: 18px;
 }
 
-.btn {
+// .btn {
 
+// }
+
+.card-popup-holder{ 
+    position: absolute;
+    width: 70%;
+    height: 30%;
+    border: 1px solid #000;
+    // top: 30%;
+    left: 15%;
+    background: #333542;
+    border-radius: $br-radius-5;
+
+    top: -400px;
+    opacity: 0.9;
 }
 
-
+.card-popup {
+    margin: 10px;
+    width: 97%;
+    height: 93%;
+    background: $card-color;
+    border-radius: $br-radius-5;
+    overflow: auto;
+}

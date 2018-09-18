@@ -40,8 +40,8 @@
                             <div class = "card-title">
                                 <h4>Title HTML</h4>
                             </div> 
-                            <div class = "card-footer">
-                                <button class = "card-edit">
+                            <div class = "card-main">
+                                <button class = "card-edit" onclick = "openModal()">
                                     ...
                                 </button> 
                                 <div class = "card-status">
@@ -63,12 +63,12 @@
             </div>
         </div>
     </div>
-    <!-- <div class="card-popup-holder">
+    <div class="card-popup-holder">
         <div class="card-popup">
             <form action="">
                 <div class="haeder-popup">
                     <input type="text">
-                    <button>X</button>
+                    <button onclick = "closeModal">X</button>
                 </div> 
                 <div class="progress-popup">
                     <progress max = "100" value="50"></progress>
@@ -76,9 +76,11 @@
                 <div class="additionl-options">
 
                 </div>
+
             </form>
         </div>
-    </div> -->
+    </div>
+    <script src = "./js/modal.js"></script>
     <script src = "./js/script.js"></script>
     <script>
         function submit(event) {
