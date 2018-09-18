@@ -1,16 +1,13 @@
-@font-face{
+// @font-face{
     
-    src: local(BGizzle) url(./fonts/BGizzle.ttf) format('truetype');
-    font-family: "BGizzle";
-    font-style: normal;
-    font-weight: normal;
-}
+// }
 
 $border-radius-5: 5px; 
 
 
 body {
-    background: aqua;
+    // background: aqua;
+    background-image: url(../img/backgruond_trello.jpg);
     
 }
 

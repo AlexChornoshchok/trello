@@ -112,7 +112,6 @@
   
     let defaultGroup = document.createElement('div');
     defaultGroup.className = "group";
-    // defaultGroup.draggable = true;
     defaultGroup.innerHTML = `
     <div class="group-header"> <h4> Title ${id++} </h4> </div>
     <div class="card-list"></div>
@@ -127,41 +126,41 @@
   window.addNewGroup = function() {    
     var Content = document.getElementsByClassName('content')[0];
     var group = getDefaultGroup(); 
-    group.insertBefore(getDefaultCard(), group.lastElementChild);
+    group.children[1].appendChild(getDefaultCard());
     Content.appendChild(group);
-    console.log("addNewGroup");
   };
 
   window.addCard = function(type) {  
-    let group = type.parentNode;
-   group.insertBefore(getDefaultCard(), group.lastElementChild);
+    let cardList = type.previousElementSibling;
+    cardList.insertBefore(getDefaultCard(), cardList.lastElementChild);
   };
 
   window.removeCard = function(elementForRemoval){    
     while(elementForRemoval.className != "card") {
       elementForRemoval = elementForRemoval.parentNode;
     };
-    let oldGroup =elementForRemoval.parentNode;
+    let oldGroup = elementForRemoval.parentElement.parentElement;
     elementForRemoval.parentNode.removeChild(elementForRemoval);
     removeGroup(oldGroup);
   };
 
   window.removeGroup = function(elementForRemoval){
-    if (elementForRemoval.childElementCount ==2){
+    if (elementForRemoval.childElementCount ==3){
       elementForRemoval.parentNode.removeChild(elementForRemoval);
     };
   };
 
   function dragDropCard(dragCard,dropCard){
     let dropGroup = dropCard;
-    while(dropGroup.className != "group") {
+    while(dropGroup.className != "card-list") {
       dropGroup = dropGroup.parentNode;
     };
-    let oldGroup =dragCard.parentNode;
-    dropGroup.insertBefore(dragCard, dropCard);
+    let oldGroup = dragCard.parentElement.parentElement;
+    dropGroup.insertBefore(dragCard, dropCard);   
     removeGroup(oldGroup);
   };
 
+  // addNewGroup();
 //  init();
 
 }());
