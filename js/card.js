@@ -2,15 +2,15 @@ function CardService(){
     var id = 0;
     this.dragCard;
     var DefaultCard = function() {
-        let defaultCard = document.createElement('div');
-        defaultCard.className = "card";
-        defaultCard.draggable = true;
-        defaultCard.ondragstart = onDragStartCard;
-        // defaultCard.ondrop = options.cardDrop; 
-        defaultCard.ondragover = function(event) {
+        let defCard = document.createElement('div');
+        defCard.className = "card";
+        defCard.draggable = true;
+        defCard.ondragstart = onDragStartCard;
+        //defaultCard.ondrop = options.cardDrop; 
+        defCard.ondragover = function(event) {
             event.preventDefault();
             };
-        defaultCard.innerHTML = `
+        defCard.innerHTML = `
               <div class="card-header">
                  <progress max="100" value="50">Progress bar</progress>
                  <span  onclick = "applicationFunction.removeCard(this)">X</span>
@@ -29,7 +29,7 @@ function CardService(){
                   </div>    
                 </div>     
             `;
-            return defaultCard;
+            return defCard;
         };
 
     onDragStartCard = function(event){
@@ -45,15 +45,35 @@ function CardService(){
         cardList.appendChild(DefaultCard());
     };
 
-    this.removeCard = function(elementForRemoval){
+    this.removeCard = function(elementForRemoval, removeGroup){
         while(elementForRemoval.className != "card") {
             elementForRemoval = elementForRemoval.parentNode;
           };
-          // let oldGroup = elementForRemoval.parentElement.parentElement;
+          let oldGroup = elementForRemoval.parentElement.parentElement;
           elementForRemoval.parentNode.removeChild(elementForRemoval);
-          // this.removeGroup(oldGroup);
+          removeGroup(oldGroup);
     };
+
     this.getDefaultCard = function(){
         return DefaultCard(); 
     };
+
+    this.onDragStartGroup = function(event){
+        dragGroup = event.toElement;
+        while(dragGroup.className != "group") {
+          dragGroup = dragGroup.parentNode;
+        };
+        event.stopPropagation();
+      };
+
+      
+
+      this.cardDrop = function(event) {
+        dropCard = event.toElement;
+        while(dropCard.className != "card") {
+          dropCard = dropCard.parentNode;
+        };
+        dragDropCard(dragCard,dropCard);
+        event.stopPropagation();
+      };
 };

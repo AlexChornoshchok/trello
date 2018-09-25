@@ -40,16 +40,12 @@ var applicationFunction = {};
   var dropGroup;
   
  
-  
-  applicationFunction.onDragStartGroup = function(event){
-    dragGroup = event.toElement;
-    while(dragGroup.className != "group") {
-      dragGroup = dragGroup.parentNode;
-    };
-    event.stopPropagation();
-  };
+  var card = new CardService();
+  var group = new GroupService();
 
-  
+  applicationFunction.onDragStartGroup = function(event){
+    card.onDragStartGroup(event);
+  };
 
   applicationFunction.groupDrop = function(event) {
     let oldGroup =dragCard.parentNode; 
@@ -70,10 +66,6 @@ var applicationFunction = {};
     event.stopPropagation();
   };
 
-  var card = new CardService();
-  var group = new GroupService();
-
-  
   function dragDropCard(dragCard,dropCard){
     let dropGroup = dropCard;
     while(dropGroup.className != "card-list") {
@@ -122,7 +114,7 @@ var applicationFunction = {};
   };
 
   applicationFunction.removeGroup = function(elementForRemoval){
-    group.removeGroup();  
+    group.removeGroup(elementForRemoval);  
   };
 
   applicationFunction.addCard = function(type) {  
@@ -130,7 +122,7 @@ var applicationFunction = {};
   };
 
   applicationFunction.removeCard = function(elementForRemoval){    
-    card.removeCard(elementForRemoval);
+    card.removeCard(elementForRemoval, group.removeGroup);
   };
 //  init();
 

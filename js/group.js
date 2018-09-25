@@ -23,9 +23,19 @@ function GroupService(){
         content.appendChild(group);
     };
 
-    this.removeGroup = function(){
+    this.removeGroup = function(elementForRemoval){
         if (!elementForRemoval.children[1].childElementCount){
             elementForRemoval.parentNode.removeChild(elementForRemoval);
         };
     };
+
+    this.groupDrop = function(event) {
+        let oldGroup =dragCard.parentNode; 
+        dropGroup = event.toElement;
+        while(dropGroup.className != "group") {
+          dropGroup = dropGroup.parentNode;
+        };
+        dropGroup.insertBefore(dragCard, dropGroup.lastElementChild);
+        this.removeGroup(oldGroup);
+      };
 };
