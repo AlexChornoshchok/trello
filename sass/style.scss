@@ -2,10 +2,6 @@
     
 // }
 
-// @keyframes card-popup {
-//     0%();
-//     100%();
-// };
 
 $group-color: #9d784c;
 $card-color: #fcfddd;
@@ -17,18 +13,16 @@ $default-opacity: 0.75;
 $br-radius-5: 5px; 
 
 body {
-    // background: aqua;
-    background-image: url(../img/backgruond_trello.jpg);
-    background-size: contain;  
-}
-
+    background: url(../img/backgruond_trello_21.jpg);
+    // background-image: url(../img/backgruond_trello.jpg);
+    background-size: 100% 100%;  
+} 
 
 .page {
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 10px; 
-   
+    // padding: 10px; 
 }
 
 .container{
@@ -52,11 +46,16 @@ body {
     max-height: 100%;
     border: $default-br;
     opacity: $default-opacity;
+    // width: 300px;
+    flex: 0 0 300px;
 }
 
 .header{
     border: $default-br;
     opacity: $default-opacity;
+    display: flex;
+    justify-content: space-between;
+    
 }
 
 .header,
@@ -75,8 +74,8 @@ body {
 }
 
 .card {
-    margin: 10px;
-    width: 300px;
+    margin: 5px auto;
+    width: 95%;
     height: 150px;
     background: $card-color;
     border-radius: $br-radius-5;

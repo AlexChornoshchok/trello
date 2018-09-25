@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="page">
-        <div class="header"> Trello
+        <div class="header">
+            <span>Trello</span>
             <form action="">
                 <input type="text" >
                 <input type="button" value="GO">
@@ -18,11 +19,11 @@
         </div>
         <div class="container">
             <div class="content">
-                <div class = "newGroup " onclick = "addNewGroup()">
+                <div class = "newGroup " onclick = " applicationFunction.addNewGroup()">
                     <button> Add another group</button>
                     <form action="">
                         <input class = "newGroup-description" type="text" placeholder="enter the name of the group">
-                        <button class = "btn" onclick = "addNewGroup()" >Add group</button>
+                        <button class = "btn" onclick = " applicationFunction.addNewGroup()" >Add group</button>
                         <button class = "btn">cancel</button>     
                     </form>
                 </div>
@@ -35,7 +36,7 @@
                         <div class="card" draggable = true>
                             <div class="card-header">
                                 <progress max="100" value="10">Progress bar</progress>
-                                <span onclick = "removeCard(this)">X</span>
+                                <span onclick = "applicationFunction.removeCard(this)">X</span>
                             </div> 
                             <div class = "card-title">
                                 <h4>Title HTML</h4>
@@ -55,7 +56,7 @@
 
                     </div>
 
-                    <div class="group-footer" onclick = "addCard(this)">
+                    <div class="group-footer" onclick = "applicationFunction.addCard(this)">
                          Add card
                     </div>
 
@@ -74,12 +75,12 @@
                     <progress max = "100" value="50"></progress>
                 </div>
                 <div class="additionl-options">
-
                 </div>
-
             </form>
         </div>
     </div>
+    <script src = "./js/group.js"></script>
+    <script src = "./js/card.js"></script>
     <script src = "./js/modal.js"></script>
     <script src = "./js/script.js"></script>
     <script>
